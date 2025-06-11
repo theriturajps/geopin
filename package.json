@@ -1,0 +1,31 @@
+{
+  "name": "geopin",
+  "version": "1.0.0",
+  "description": "Military-grade  GeoPin API service for precise coordinate encoding using WGS84 standard",
+  "type": "module",
+  "main": "src/geopin.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "geopin",
+    "coordinates",
+    "military-grade",
+    "WGS84",
+    "precision",
+    "location",
+    "GPS",
+    "geospatial"
+  ],
+  "author": "GEOPIN Systems",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "morgan": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -1,12 +1,12 @@
 # GeoPin - Military-Grade Coordinate Encoding API
 
-![GEOPIN Logo](https://img.shields.io/badge/GEOPIN-Military%20Grade-red?style=for-the-badge)
+![GeoPin Logo](https://img.shields.io/badge/GeoPin-Military%20Grade-red?style=for-the-badge)
 ![WGS84](https://img.shields.io/badge/Datum-WGS84-green?style=for-the-badge)
 ![Precision](https://img.shields.io/badge/Precision-Sub%20Meter-blue?style=for-the-badge)
 
 ## 🎯 Overview
 
-GEOPIN is an advanced, military-grade coordinate encoding system that converts WGS84 latitude/longitude coordinates into precise, shareable 12-character alphanumeric codes. Designed for real-world operations requiring absolute precision and reliability.
+GeoPin is an advanced, military-grade coordinate encoding system that converts WGS84 latitude/longitude coordinates into precise, shareable 12-character alphanumeric codes. Designed for real-world operations requiring absolute precision and reliability.
 
 ### 📊 Format: `XXXX-XXXX-XXXX`
 
@@ -44,11 +44,11 @@ npm install geopin
 ```javascript
 import { encodeGeoPin, decodeGeoPin } from 'geopin';
 
-// Encode coordinates to GEOPIN
+// Encode coordinates to GeoPin
 const geopin = encodeGeoPin(40.7128, -74.0060);
 console.log(geopin); // "2A5G-H3K7-M9P4"
 
-// Decode GeoPinto coordinates
+// Decode GeoPin to coordinates
 const coords = decodeGeoPin("2A5G-H3K7-M9P4");
 console.log(coords.latitude, coords.longitude); // 40.712800, -74.006000
 ```
@@ -76,7 +76,7 @@ GET /api/health
 ```json
 {
   "status": "operational",
-  "service": "GEOPIN Military-Grade API",
+  "service": "GeoPin Military-Grade API",
   "version": "1.0.0",
   "datum": "WGS84",
   "precision": "Sub-meter accuracy"
@@ -118,7 +118,7 @@ Content-Type: application/json
 }
 ```
 
-### 3. Decode GEOPIN
+### 3. Decode GeoPin
 
 #### GET Method
 ```http
@@ -157,7 +157,7 @@ Content-Type: application/json
 }
 ```
 
-### 4. Validate GEOPIN
+### 4. Validate GeoPin
 ```http
 GET /api/validate?geopin=2A5G-H3K7-M9P4
 ```
@@ -197,7 +197,7 @@ GET /api/precision?geopin=2A5G-H3K7-M9P4
 
 ### Data Integrity
 - **Input Validation**: Strict coordinate boundary checking
-- **Format Verification**: Comprehensive GeoPinformat validation
+- **Format Verification**: Comprehensive GeoPin format validation
 - **Error Handling**: Detailed error messages for troubleshooting
 - **Boundary Protection**: Edge case handling for polar regions and dateline
 
@@ -309,7 +309,7 @@ class LocationService {
   
   static resolveGeopin(geopin) {
     if (!validateGeoPin(geopin)) {
-      throw new Error('Invalid GEOPIN');
+      throw new Error('Invalid GeoPin');
     }
     return decodeGeoPin(geopin);
   }
@@ -342,7 +342,7 @@ MIT License - Free for military, scientific, and commercial use.
 - Discussions for feature requests
 - Wiki for advanced use cases
 
-## 🌟 Why Choose GEOPIN?
+## 🌟 Why Choose GeoPin?
 
 ### vs. Traditional Systems
 - **More Precise**: Sub-meter vs. street-level accuracy
@@ -360,7 +360,7 @@ MIT License - Free for military, scientific, and commercial use.
 
 **🎖️ Trusted by Military • 🔬 Validated by Scientists • 🏢 Used by Enterprises**
 
-*GEOPIN: Where Precision Meets Reliability*
+*GeoPin: Where Precision Meets Reliability*
 
 ---
 

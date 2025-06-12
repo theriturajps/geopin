@@ -1,8 +1,3 @@
-/**
- *  GeoPin API Routes - Military Grade Precision
- * Supports both GET and POST methods for maximum compatibility
- */
-
 import express from 'express';
 import { encodeGeoPin, decodeGeoPin, validateGeoPin, getGeoPinPrecision } from './geopin.js';
 
@@ -12,18 +7,18 @@ const router = express.Router();
 router.get('/health', (req, res) => {
     res.json({
         status: 'operational',
-        service: 'GEOPIN Military-Grade API',
+        service: 'GeoPin Military-Grade API',
         version: '1.0.0',
         datum: 'WGS84',
         precision: 'Sub-meter accuracy'
     });
 });
 
-// Encode coordinates to GeoPin- POST method
+// Encode coordinates to GeoPin - POST method
 router.post('/encode', (req, res) => {
     try {
         const { latitude, longitude } = req.body;
-        
+
         if (latitude === undefined || longitude === undefined) {
             return res.status(400).json({
                 error: 'Missing coordinates',
@@ -60,11 +55,11 @@ router.post('/encode', (req, res) => {
     }
 });
 
-// Encode coordinates to GeoPin- GET method
+// Encode coordinates to GeoPin - GET method
 router.get('/encode', (req, res) => {
     try {
         const { latitude, longitude, lat, lon } = req.query;
-        
+
         // Support both 'latitude/longitude' and 'lat/lon' parameters
         const inputLat = latitude || lat;
         const inputLon = longitude || lon;
@@ -105,15 +100,15 @@ router.get('/encode', (req, res) => {
     }
 });
 
-// Decode GeoPinto coordinates - POST method
+// Decode GeoPin to coordinates - POST method
 router.post('/decode', (req, res) => {
     try {
         const { geopin } = req.body;
 
         if (!geopin) {
             return res.status(400).json({
-                error: 'Missing GEOPIN',
-                message: 'GEOPIN parameter is required',
+                error: 'Missing GeoPin',
+                message: 'GeoPin parameter is required',
                 format: 'XXXX-XXXX-XXXX'
             });
         }
@@ -134,15 +129,15 @@ router.post('/decode', (req, res) => {
     }
 });
 
-// Decode GeoPinto coordinates - GET method
+// Decode GeoPin to coordinates - GET method
 router.get('/decode', (req, res) => {
     try {
         const { geopin } = req.query;
 
         if (!geopin) {
             return res.status(400).json({
-                error: 'Missing GEOPIN',
-                message: 'GEOPIN parameter is required',
+                error: 'Missing GeoPin',
+                message: 'GeoPin parameter is required',
                 example: '/decode?geopin=2A5G-H3K7-M9P4'
             });
         }
@@ -163,20 +158,20 @@ router.get('/decode', (req, res) => {
     }
 });
 
-// Validate GeoPinformat - GET method
+// Validate GeoPin format - GET method
 router.get('/validate', (req, res) => {
     try {
         const { geopin } = req.query;
 
         if (!geopin) {
             return res.status(400).json({
-                error: 'Missing GEOPIN',
-                message: 'GEOPIN parameter is required'
+                error: 'Missing GeoPin',
+                message: 'GeoPin parameter is required'
             });
         }
 
         const isValid = validateGeoPin(geopin);
-        
+
         if (isValid) {
             const precision = getGeoPinPrecision(geopin);
             res.json({
@@ -189,7 +184,7 @@ router.get('/validate', (req, res) => {
             res.json({
                 valid: false,
                 geopin,
-                message: 'Invalid GeoPinformat'
+                message: 'Invalid GeoPin format'
             });
         }
     } catch (error) {
@@ -208,13 +203,13 @@ router.get('/precision', (req, res) => {
 
         if (!geopin) {
             return res.status(400).json({
-                error: 'Missing GEOPIN',
-                message: 'GEOPIN parameter is required'
+                error: 'Missing GeoPin',
+                message: 'GeoPin parameter is required'
             });
         }
 
         const precision = getGeoPinPrecision(geopin);
-        
+
         res.json({
             geopin,
             ...precision

@@ -1,8 +1,3 @@
-/**
- *  GeoPin API Application
- * Military-Grade Coordinate Encoding Service
- */
-
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';

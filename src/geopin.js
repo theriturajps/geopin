@@ -1,5 +1,5 @@
 /**
- * GeoPin- Military-Grade Coordinate Encoding System
+ * GeoPin - Military-Grade Coordinate Encoding System
  * Uses WGS84 datum with NASA-grade precision for real-world operations
  * Supports global coordinates with sub-meter accuracy
  * Format: XXXX-XXXX-XXXX (12 alphanumeric characters)
@@ -27,10 +27,10 @@ const WGS84_BOUNDS = {
 const PRECISION_LEVELS = 12; // 12 levels for sub-meter accuracy
 
 /**
- * Encodes WGS84 coordinates to military-grade GEOPIN
+ * Encodes WGS84 coordinates to military-grade GeoPin
  * @param {number} latitude - WGS84 latitude (-90 to 90)
  * @param {number} longitude - WGS84 longitude (-180 to 180)
- * @returns {string} 12-character GeoPinin format XXXX-XXXX-XXXX
+ * @returns {string} 12-character GeoPin in format XXXX-XXXX-XXXX
  */
 export function encodeGeoPin(latitude, longitude) {
     // Validate WGS84 coordinate bounds
@@ -80,25 +80,25 @@ export function encodeGeoPin(latitude, longitude) {
 }
 
 /**
- * Decodes military-grade GeoPinto WGS84 coordinates
- * @param {string} geopin - 12-character GeoPin(XXXX-XXXX-XXXX format)
+ * Decodes military-grade GeoPin to WGS84 coordinates
+ * @param {string} geopin - 12-character GeoPin (XXXX-XXXX-XXXX format)
  * @returns {object} WGS84 coordinates with precision bounds
  */
 export function decodeGeoPin(geopin) {
-    // Validate GeoPinformat
+    // Validate GeoPin format
     if (!geopin || typeof geopin !== 'string') {
-        throw new Error('GEOPIN must be a valid string');
+        throw new Error('GeoPin must be a valid string');
     }
 
     // Remove separators and validate length
     const cleanPin = geopin.replace(/-/g, '');
     if (cleanPin.length !== 12) {
-        throw new Error('GEOPIN must be exactly 12 characters (format: XXXX-XXXX-XXXX)');
+        throw new Error('GeoPin must be exactly 12 characters (format: XXXX-XXXX-XXXX)');
     }
 
     // Validate format pattern
     if (!/^[2-9A-Z]{4}-[2-9A-Z]{4}-[2-9A-Z]{4}$/.test(geopin)) {
-        throw new Error('GEOPIN must follow format XXXX-XXXX-XXXX with valid characters');
+        throw new Error('GeoPin must follow format XXXX-XXXX-XXXX with valid characters');
     }
 
     let minLat = WGS84_BOUNDS.minLat;
@@ -124,7 +124,7 @@ export function decodeGeoPin(geopin) {
         }
 
         if (latIndex === -1) {
-            throw new Error(`Invalid character '${char}' in GeoPinat position ${level + 1}`);
+            throw new Error(`Invalid character '${char}' in GeoPin at position ${level + 1}`);
         }
 
         // Calculate subdivision bounds
@@ -162,8 +162,8 @@ export function decodeGeoPin(geopin) {
 }
 
 /**
- * Validates GeoPinformat
- * @param {string} geopin - GeoPinto validate
+ * Validates GeoPin format
+ * @param {string} geopin - GeoPin to validate
  * @returns {boolean} True if valid
  */
 export function validateGeoPin(geopin) {
@@ -176,19 +176,19 @@ export function validateGeoPin(geopin) {
 }
 
 /**
- * Gets precision information for a GEOPIN
- * @param {string} geopin - GeoPinto analyze
+ * Gets precision information for a GeoPin
+ * @param {string} geopin - GeoPin to analyze
  * @returns {object} Precision information
  */
 export function getGeoPinPrecision(geopin) {
     const decoded = decodeGeoPin(geopin);
     const latRange = decoded.precision.latitudeRange;
     const lonRange = decoded.precision.longitudeRange;
-    
+
     // Calculate approximate distance accuracy using WGS84 parameters
     const latDistanceM = (latRange[1] - latRange[0]) * 111319.9; // meters per degree latitude
     const lonDistanceM = (lonRange[1] - lonRange[0]) * 111319.9 * Math.cos(decoded.latitude * Math.PI / 180);
-    
+
     return {
         level: PRECISION_LEVELS,
         approximateAccuracy: {

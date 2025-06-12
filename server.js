@@ -12,13 +12,6 @@ const HOST = process.env.HOST || '0.0.0.0';
 app.listen(PORT, HOST, () => {
     console.log('\n🌍 GeoPinMilitary-Grade API Server');
     console.log('========================================');
-    console.log(`🚀 Server running on: http://localhost:${PORT}`);
-    console.log('📊 Status: OPERATIONAL');
-    console.log('🎯 Precision: Sub-meter accuracy');
-    console.log('🌐 Datum: WGS84 (Military Standard)');
-    console.log('📝 Format: XXXX-XXXX-XXXX');
-    console.log('🔓 Access: Free Public Service');
-    console.log('========================================');
     console.log('\n📡 API Endpoints:');
     console.log(`   Health Check: http://localhost:${PORT}/api/health`);
     console.log(`   Encode:       http://localhost:${PORT}/api/encode`);

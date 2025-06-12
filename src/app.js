@@ -32,15 +32,15 @@ app.get('/', (req, res) => {
         format: 'XXXX-XXXX-XXXX',
         endpoints: {
             encode: {
-                get: '/api/encode?latitude=LAT&longitude=LON',
+                get: '/api/encode?latitude=20.5937&longitude=78.9629',
                 post: '/api/encode (body: {latitude, longitude})'
             },
             decode: {
-                get: '/api/decode?geopin=XXXX-XXXX-XXXX',
+                get: '/api/decode?geopin=QT7U-9P3B-ZRLL',
                 post: '/api/decode (body: {geopin})'
             },
-            validate: '/api/validate?geopin=XXXX-XXXX-XXXX',
-            precision: '/api/precision?geopin=XXXX-XXXX-XXXX',
+            validate: '/api/validate?geopin=QT7U-9P3B-ZRLL',
+            precision: '/api/precision?geopin=QT7U-9P3B-ZRLL',
             health: '/api/health'
         },
         documentation: 'https://github.com/theriturajps/geopin#readme',
